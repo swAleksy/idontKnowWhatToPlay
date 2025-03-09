@@ -7,8 +7,8 @@ namespace GamesTracker.DTOs.Steam
 {
     public class WishlistItem
     {
-        public int AppId { get; set; }
-        public int Priority { get; set; }
-        public int DateAdded { get; set; }        
+        public int appid { get; set; }
+        public int priority { get; set; }
+        public long date_added { get; set; }        
     }
 }

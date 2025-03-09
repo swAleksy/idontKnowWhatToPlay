@@ -7,13 +7,13 @@ namespace GamesTracker.DTOs.Steam
 {
     public class OwnedGame
     {
-        public int AppId { get; set; }
-        public int PlaytimeForever { get; set; }
-        public int PlaytimeWindowsForever { get; set; }
-        public int PlaytimeMacForever { get; set; }
-        public int PlaytimeLinuxForever { get; set; }
-        public int PlaytimeDeckForever { get; set; }
-        public int RtimeLastPlayed { get; set; }
-        public int PlaytimeDisconnected { get; set; }
+        public int appid { get; set; }
+        public int playtime_forever { get; set; }
+        public int playtime_windows_forever { get; set; }
+        public int playtime_mac_forever { get; set; }
+        public int playtime_linux_forever { get; set; }
+        public int playtime_deck_forever { get; set; }
+        public int rtime_last_played { get; set; }
+        public long playtime_disconnected { get; set; }
     }
 }

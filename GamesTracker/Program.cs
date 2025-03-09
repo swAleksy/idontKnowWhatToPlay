@@ -1,5 +1,6 @@
 
 using GamesTracker.Data;
+using GamesTracker.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace GamesTracker;
@@ -21,6 +22,7 @@ public class Program
                 builder.Configuration.GetConnectionString("MySqlConn"), 
                 ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("MySqlConn")))
         );
+        builder.Services.AddHttpClient<ISteamService, SteamService>();
 
         var app = builder.Build();
 
@@ -30,7 +32,7 @@ public class Program
             app.MapOpenApi();
         }
 
-        app.UseHttpsRedirection();
+        // app.UseHttpsRedirection();
 
         app.UseAuthorization();
 

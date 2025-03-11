@@ -16,4 +16,5 @@ namespace GamesTracker.DTOs.Steam
         public int rtime_last_played { get; set; }
         public long playtime_disconnected { get; set; }
     }
+
 }

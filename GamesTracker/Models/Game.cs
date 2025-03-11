@@ -14,6 +14,6 @@ namespace GamesTracker.Models
         public bool IsWishlisted {get; set;}
         public string GameName {get; set;} = string.Empty;
         public string ThumbnailURL {get; set;} = string.Empty;
-        public ICollection<GameTag> GameTags { get; set; } = new List<GameTag>();
+        public ICollection<GameTag>? GameTags { get; set; } = new List<GameTag>();
     }
 }

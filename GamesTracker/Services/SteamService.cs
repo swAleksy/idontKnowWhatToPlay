@@ -15,6 +15,7 @@ namespace GamesTracker.Services
     {
         Task<IEnumerable<OwnedGame>> GetOwnedGamesAsync(string steamId);
         Task<IEnumerable<WishlistItem>> GetWishlistAsync(string steamId);
+        Task<(string Name, string HeaderImage)?> GetGameDetailsAsync(string appId);
     }
 
     public class SteamService : ISteamService
@@ -59,7 +60,26 @@ namespace GamesTracker.Services
             var wishlistItems = JsonSerializer.Deserialize<SteamWishlistResponse>(content, options);
             return SteamApiMappers.MapWishlistToModels(wishlistItems);
         }
+
+        public async Task<(string Name, string HeaderImage)?> GetGameDetailsAsync(string appId)
+        {
+            var response = await _httpClient.GetAsync($"https://store.steampowered.com/api/appdetails?appids={appId}");
+            response.EnsureSuccessStatusCode();
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            using var doc = JsonDocument.Parse(content);
+            var root = doc.RootElement;
+
+            if (root.TryGetProperty(appId, out var appElement) && appElement.TryGetProperty("success", out var successElement) && successElement.GetBoolean() && appElement.TryGetProperty("data", out var dataElement))
+            {
+                var name = dataElement.GetProperty("name").GetString();
+                var imageUrl = dataElement.GetProperty("header_image").GetString();
+                return (name, imageUrl);
+            }
+
+             
+            return null;
+        }
     }
-
-
 }

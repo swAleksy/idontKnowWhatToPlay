@@ -22,8 +22,11 @@ public class Program
                 builder.Configuration.GetConnectionString("MySqlConn"), 
                 ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("MySqlConn")))
         );
-        builder.Services.AddHttpClient<ISteamService, SteamService>();
 
+        builder.Services.AddHttpClient<ISteamService, SteamService>();
+        builder.Services.AddScoped<IDtoConvertService, DtoConvertService>();
+        builder.Services.AddScoped<IGameService, GameService>();
+        
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

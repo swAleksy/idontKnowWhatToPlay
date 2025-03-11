@@ -14,14 +14,14 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace GamesTracker.Controllers
 {
     [ApiController]
-    [Route("api/games")]
+    [Route("api/steam")]
     public class SteamGamesController : ControllerBase
     {
         private readonly ISteamService _steamService;
 
         public SteamGamesController(ISteamService steamService)
         {
-        _steamService = steamService;
+            _steamService = steamService;
         }
 
         [HttpGet("{steamId}")] 
